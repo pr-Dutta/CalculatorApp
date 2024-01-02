@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="deploymentTargetDropDown">
+    <value>
+      <entry key="CalculatorPreview">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\Pranjal Dutta\.android\avd\Pixel_7_API_34.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-01-01T06:51:59.769525900Z" />
+        </State>
+      </entry>
+      <entry key="app">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="PNP7RC7TX4ZHZXZH" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2023-12-23T06:05:24.565609200Z" />
+        </State>
+      </entry>
+    </value>
+  </component>
+</project>
