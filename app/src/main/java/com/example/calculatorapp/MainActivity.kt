@@ -53,13 +53,17 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Calculator() {
 
+    val calculatorLogic = CalculatorLogic()
+
     // State management
-    var displayNumber by remember { mutableStateOf("") }  // For Calculation
+    var displayNumber by remember { mutableStateOf("") }
     var result by remember { mutableStateOf("0") }
 
-    Column(Modifier.fillMaxSize(),
+    Column(
+        modifier =Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally) {
+
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
@@ -68,7 +72,9 @@ fun Calculator() {
                 style = TextStyle(fontSize = 55.sp),
                 maxLines = 1)       // It makes the text field to take only one line
         }
+
         Spacer(modifier = Modifier.height(20.dp))
+
         Row(modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End) {
             Text(text = result,style = TextStyle(fontSize =70.sp),
@@ -76,6 +82,7 @@ fun Calculator() {
         }
 
         Spacer(modifier = Modifier.height(20.dp))
+
         Column(modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
@@ -107,17 +114,18 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        sqrt = false
-                                        sqrtCount = 0
-                                        countOperand = 0
-                                        onlyOperator = true
-                                        equalPressed = false
-                                        countOperator = 0
-                                        decimalCount = 0
+                                        calculatorLogic.sqrt = false
+                                        calculatorLogic.sqrtCount = 0
+                                        calculatorLogic.countOperand = 0
+                                        calculatorLogic.onlyOperator = true
+                                        calculatorLogic.equalPressed = false
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.decimalCount = 0
                                         displayNumber = ""
                                         result = "0"
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -125,7 +133,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "\u221A",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -134,12 +142,13 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        sqrt = true
-                                        sqrtCount++
-                                        countOperator++
-                                        displayNumber = stringConcatenation(displayNumber,"√")
+                                        calculatorLogic.sqrt = true
+                                        calculatorLogic.sqrtCount++
+                                        calculatorLogic.countOperator++
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"√")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -147,7 +156,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "%",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -156,10 +165,11 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        countOperator++
-                                        displayNumber = stringConcatenation(displayNumber,"%")
+                                        calculatorLogic.countOperator++
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"%")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -167,7 +177,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "\u2715",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -176,7 +186,7 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        displayNumber = stringCancel(displayNumber)
+                                        displayNumber = calculatorLogic.stringCancel(displayNumber)
                                     })
                         }
                     }
@@ -187,6 +197,7 @@ fun Calculator() {
                         .weight(1f)
                         .fillMaxWidth()
                 ) {
+
                     Row {
                         Box(
                             modifier = Modifier
@@ -195,7 +206,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "1",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -203,12 +214,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber, "1")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber, "1")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -216,7 +228,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "2",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -224,12 +236,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"2")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"2")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -237,7 +250,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "3",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -245,12 +258,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"3")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"3")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -258,7 +272,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "*",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -267,8 +281,8 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        countOperator++
-                                        displayNumber = stringConcatenation(displayNumber,"*")
+                                        calculatorLogic.countOperator++
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"*")
                                     })
                         }
                     }
@@ -287,7 +301,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "4",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -295,12 +309,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"4")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"4")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -308,7 +323,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "5",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -316,12 +331,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"5")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"5")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -329,7 +345,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "6",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -337,12 +353,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"6")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"6")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -350,7 +367,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "-",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -359,8 +376,8 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        countOperator++
-                                        displayNumber = stringConcatenation(displayNumber,"-")
+                                        calculatorLogic.countOperator++
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"-")
                                     })
                         }
                     }
@@ -372,6 +389,7 @@ fun Calculator() {
                         .fillMaxWidth()
                 ) {
                     Row {
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -379,7 +397,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "7",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -387,12 +405,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"7")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"7")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -400,7 +419,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "8",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -408,12 +427,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"8")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"8")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -421,7 +441,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "9",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -429,12 +449,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"9")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"9")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -442,7 +463,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "+",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -451,8 +472,8 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        countOperator++
-                                        displayNumber = stringConcatenation(displayNumber,"+")
+                                        calculatorLogic.countOperator++
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"+")
                                     })
                         }
                     }
@@ -464,6 +485,7 @@ fun Calculator() {
                         .fillMaxWidth()
                 ) {
                     Row {
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -471,7 +493,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "0",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -479,12 +501,13 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount = 0
-                                        countOperator = 0
-                                        onlyOperator = false
-                                        displayNumber = stringConcatenation(displayNumber,"0")
+                                        calculatorLogic.decimalCount = 0
+                                        calculatorLogic.countOperator = 0
+                                        calculatorLogic.onlyOperator = false
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,"0")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -492,7 +515,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = ".",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -500,10 +523,11 @@ fun Calculator() {
                                     .padding(20.dp)
                                     .wrapContentHeight()
                                     .clickable {
-                                        decimalCount++
-                                        displayNumber = stringConcatenation(displayNumber,".")
+                                        calculatorLogic.decimalCount++
+                                        displayNumber = calculatorLogic.stringConcatenation(displayNumber,".")
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -511,7 +535,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "/",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -520,10 +544,11 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        equalPressed = true
-                                        result = separateOperators(displayNumber)
+                                        calculatorLogic.equalPressed = true
+                                        result = calculatorLogic.separateOperators(displayNumber)
                                     })
                         }
+
                         Box(
                             modifier = Modifier
                                 .weight(1f)
@@ -531,7 +556,7 @@ fun Calculator() {
                                 .fillMaxHeight()
                         ) {
                             Text(text = "=",
-                                style = TextStyle(fontSize =60.sp),
+                                style = TextStyle(fontSize = 60.sp),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier
                                     .fillMaxHeight()
@@ -540,8 +565,8 @@ fun Calculator() {
                                     .wrapContentHeight()
                                     .background(Color.Gray)
                                     .clickable {
-                                        equalPressed = true
-                                        result = separateOperators(displayNumber)
+                                        calculatorLogic.equalPressed = true
+                                        result = calculatorLogic.separateOperators(displayNumber)
                                     })
                         }
                     }
