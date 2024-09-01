@@ -93,10 +93,10 @@ class CalculatorLogic {
 
     private var elements = listOf<String>()
 
-    internal fun separateOperators(displayNumber: String): String {
-
-        var result = "0"
-        var isSqrt = false
+//    internal fun separateOperators(displayNumber: String): String {
+//
+//        var result = "0"
+//        var isSqrt = false
 
 
         if (!onlyOperator) {
